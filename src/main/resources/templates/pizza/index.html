@@ -3,7 +3,7 @@
 
 <head th:replace="fragments/head :: head('Pizze')"></head>
 
-<body th:attr="onload=|truncateElements('special-offer-id', 15); truncateElementsList('pizza-ingredients-', ${pizzas.size()}, 100)|">
+<body th:attr="onload=|truncateElements('special-offer-id', 15); truncateElementsList('pizza-ingredients-', ${pizzas.size()}, 60)|">
     <div th:replace="fragments/navbar :: navbar()"></div>
 
     <h1 class="text-center pt-4 pb-5">Pizze</h1>

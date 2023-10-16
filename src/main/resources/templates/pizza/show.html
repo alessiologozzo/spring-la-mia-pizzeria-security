@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head th:replace="~{fragments/head :: head(${pizza.getName()})}"></head>
 
-    <body onload="addCommasToIngredientsLinksContainer()">
+    <body th:attr="onload=|addCommasToIngredientsLinksContainer(); truncateElementsList('pizza-ingredient-', '${pizza.getIngredients().size()}', 15)|">
         <div th:replace="fragments/navbar :: navbar()"></div>
 
         <div class="container">            
@@ -25,7 +25,7 @@
                     <div class="d-flex align-items-center gap-3">
                         <h6 class="text-decoration-underline text-no-wrap">Ingredienti:</h6>
                         <div th:if="${pizza.getIngredients().size() > 0}" id="ingredients-links-container" class="d-flex flex-wrap gap-2">
-                            <a th:href="@{/ingredients/{id}(id=${ingredient.getId()})}" th:each="ingredient: ${pizza.getIngredients()}" th:text="${ingredient.getName()}" class="fs-5 text-decoration-none"></a>
+                            <a th:href="@{/ingredients/{id}(id=${ingredient.getId()})}" th:each="ingredient, status: ${pizza.getIngredients()}" th:id="'pizza-ingredient-' + ${status.index}" th:text="${ingredient.getName()}" class="fs-5 text-decoration-none"></a>
                         </div>
                         <div th:unless="${pizza.getIngredients().size() > 0}" class="text-danger">Questa pizza non ha ingredienti</div>
                     </div>
